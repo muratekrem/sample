@@ -5,18 +5,17 @@ import axios from 'axios';
 const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false); // Loading durumu
-    const [error, setError] = useState(null); // Hata durumu
+    const [loading, setLoading] = useState(false); 
+    const [error, setError] = useState(null);
 
     const handleSignup = async () => {
-        // Boş alan kontrolü
         if (!email || !password) {
             alert('E-posta ve şifre alanlarını doldurduğunuzdan emin olun.');
             return;
         }
 
-        setLoading(true);  // Yükleme durumu başlatılıyor
-        setError(null);     // Önceki hatayı temizle
+        setLoading(true); 
+        setError(null);   
 
         try {
             const response = await axios.post('http://localhost:5000/signup', { email, password });
@@ -27,7 +26,7 @@ const Signup = () => {
             setError(error.response ? error.response.data.message : "Bir hata oluştu");
             alert(error.response ? error.response.data.message : "Bir hata oluştu");
         } finally {
-            setLoading(false);  // Yükleme durumu bitiyor
+            setLoading(false); 
         }
     };
 
